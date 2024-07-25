@@ -62,6 +62,8 @@ const WebcamPro = (props) => {
   useEffect(() => {
     if(window.innerWidth < 776) {
       setDevice({ width: 480, height: 640 });
+      const video = webcamRef.current.video;
+      video.style.transform = 'scaleX(-1)';
     } else {
       setDevice({ width: 640, height: 480 });
     }
@@ -79,7 +81,7 @@ const WebcamPro = (props) => {
       const video = webcamRef.current.video;
       if (video) {
         if (window.orientation === 45 || window.orientation === -45) {
-          video.style.transform = 'scale(-1, 1) rotate(45deg)';
+          video.style.transform = 'scale(-1)';
         } else {
           video.style.transform = 'rotate(45deg)';
         }
