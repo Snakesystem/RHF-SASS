@@ -1,0 +1,86 @@
+@media (max-width: 576px) {
+    .login-page {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        .content-hero {
+            padding: 0 !important;
+        }
+        .left-login {
+            position: relative;
+            z-index: 1;
+            padding: 0 !important;
+            margin: 0 !important;
+         }
+    
+         .right-login {
+            position: absolute;
+            top: 0;
+            z-index: 2;
+            display: flex;
+
+            .header-login {
+                margin-left: 1rem;
+            }
+
+            .form-login {
+                margin-left: 1rem;
+            }
+
+            .footer-login {
+                margin-left: 1rem;
+            }
+         }
+    } 
+
+    .modal-webcam {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        box-shadow: none !important;
+        margin: 0 !important;
+        border: none !important;
+        padding: 0 !important;
+        top: 0 !important;
+        left: 0 !important;
+        transform: none !important;
+
+        .modal-body {
+            overflow-y: hidden; /* Prevent scrolling */
+            padding: 0; /* Remove default padding */
+            margin: 0;
+        }
+
+        .modal-footer-webcam {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: space-around;
+
+            button {
+                color: white;
+                background-color: transparent;
+                border: none;
+              }
+        }
+
+        .webcam-container {
+            position: relative;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            overflow-y: hidden !important;
+            // background-color: black;
+            video {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: contain !important;
+                transform: rotate(0deg) !important;
+              }
+          }
+    }
+}

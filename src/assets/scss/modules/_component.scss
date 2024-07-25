@@ -1,0 +1,170 @@
+@use 'function' as function;
+@use 'variable' as var;
+
+/* Not Found style */
+.swal2-notfound {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .swal2-actions {
+        margin-top: -20rem !important;
+    }
+}
+
+.swal2-html-container {
+    .swal2-image-notfound {
+        @include function.breakpoint-width(50%, 100%, 100%, 100%, 100%, 70%, 40%, 30%);
+        // height: 30% !important;
+        // object-fit: contain !important;
+    }
+}
+
+/* COMPONENT BUTTON STYLES */
+.btn {
+    height: 100%;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+  
+    @each $size, $props in var.$btn-sizes {
+      &-#{$size} {
+        height: map-get($props, height);
+        padding: map-get($props, padding);
+  
+        .btn-text {
+          font-size: map-get($props, font-size);
+        }
+      }
+    }
+  
+    @each $type, $color in var.$btn-colors {
+      &-#{$type} {
+        border-radius: var.$btn-radius;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+        border: none;
+        color: white;
+  
+        @include function.btn-states($color, darken($color, 10%), lighten($color, 20%), lighten($color, 20%));
+  
+        .btn-text {
+          font-family: Inter, sans-serif;
+          font-weight: 500;
+          line-height: 14px;
+          word-wrap: break-word;
+        }
+      }
+
+      &-outline-#{$type} {
+        border-radius: var.$btn-radius;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+  
+        @include function.btn-outline-states($color, $color, $color, $color);
+  
+        .btn-text {
+          font-family: Inter, sans-serif;
+          font-weight: 500;
+          line-height: 14px;
+          word-wrap: break-word;
+        }
+      }
+
+      &-zero-#{$type} {
+        border-radius: var.$btn-radius;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+  
+        @include function.btn-zero-states($color, $color, $color, $color);
+  
+        .btn-text {
+          font-family: Inter, sans-serif;
+          font-weight: 500;
+          line-height: 14px;
+          word-wrap: break-word;
+        }
+      }
+    }
+
+    &-full {
+        width: 100%;
+    }
+}
+
+/* COMPONENT INPUT STYLES */
+input {
+    border-radius: var.$borderRadius-radius-pill !important;
+    border: 1px solid var.$neutral-200;
+    background: #FFF;
+    display: flex;
+    height: 44px;
+    padding: 0px 2rem !important;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+    position: relative; 
+    width: 100%; 
+    box-sizing: border-box;
+    width: 50%; 
+    padding-right: 0px 20px !important;
+}
+
+select {
+    border-radius: var.$borderRadius-radius-pill !important;
+    border: 1px solid var.$neutral-200;
+    background: #FFF;
+    display: flex;
+    height: 44px;
+    padding: 0px 2rem !important;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+    position: relative; 
+    width: 100%; 
+    box-sizing: border-box;
+    width: 50%; 
+    padding-right: 0px 20px !important;
+}
+
+.icon-password {
+    position: absolute !important;
+    right: 0.7rem !important;
+    top: 0.6rem;
+    cursor: pointer;
+    z-index: 999;
+}
+
+.phone-number-input {
+    display: flex;
+    // background-color: lightblue;
+    position: relative;
+  
+    .phone-code {
+      position: absolute !important;
+      border-top-left-radius: 25rem !important;
+      border-bottom-left-radius: 25rem !important;
+      left: 0 !important;
+      height: 44px !important;
+      cursor: pointer;
+      z-index: 999;
+  }
+
+  input {
+    z-index: 1;
+    padding-left: 4rem !important;
+}
+}
+

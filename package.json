@@ -1,0 +1,52 @@
+{
+  "name": "eformv3-client",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "start": "vite build --watch",
+    "build": "vite build",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^3.9.0",
+    "@sweetalert2/theme-dark": "^5.0.17",
+    "@sweetalert2/themes": "^5.0.17",
+    "aos": "^2.3.4",
+    "axios": "^1.7.2",
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
+    "i18next": "^23.12.2",
+    "i18next-browser-languagedetector": "^8.0.0",
+    "react": "^18.3.1",
+    "react-bootstrap": "^2.10.4",
+    "react-bootstrap-typeahead": "^6.3.2",
+    "react-dom": "^18.3.1",
+    "react-form-wizard-component": "^0.2.3",
+    "react-google-recaptcha": "^3.1.0",
+    "react-hook-form": "^7.52.1",
+    "react-i18next": "^15.0.0",
+    "react-loading-indicators": "^1.0.0",
+    "react-loading-skeleton": "^3.4.0",
+    "react-router-dom": "^6.25.1",
+    "react-toastify": "^10.0.5",
+    "react-webcam": "^7.2.0",
+    "sass": "^1.77.8",
+    "sweetalert2": "^11.12.3",
+    "sweetalert2-react-content": "^5.0.7",
+    "yup": "^1.4.0"
+  },
+  "devDependencies": {
+    "@hookform/devtools": "^4.3.1",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.34.3",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-react-refresh": "^0.4.7",
+    "vite": "^5.3.4"
+  }
+}

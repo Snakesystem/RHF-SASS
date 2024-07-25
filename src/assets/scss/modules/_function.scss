@@ -1,0 +1,359 @@
+@use 'variable' as var;
+
+@mixin light-color-classes() {
+    @each $prefix, $color-map in var.$color-maps {
+        @each $key, $color in $color-map {
+          .bg-#{$prefix}-#{$key} {
+            background-color: $color;
+          }
+      
+          .text-#{$prefix}-#{$key} {
+            color: $color;
+          }
+        }
+    }
+}
+
+@mixin dark-color-classes() {
+    @each $prefix, $color-map in var.$color-maps {
+        @each $key, $color in $color-map {
+            $inverse-key: 950 - $key + 50; // Menghitung nilai kebalikannya (950 menjadi 50, 900 menjadi 100, dst.)
+            
+            .bg-#{$prefix}-#{$inverse-key} {
+              background-color: $color;
+            }
+      
+            .text-#{$prefix}-#{$inverse-key} {
+              color: $color;
+            }
+        }
+    }
+}
+
+@mixin use-light-mode() {
+    /* Choice style to light mode */
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    color: var.$dark;
+
+    @include light-color-classes();
+
+    .swal2-title {
+        color: var.$gray-900 !important;
+    }
+
+    .swal2-html-container {
+        color: var.$gray-900 !important;
+    }
+    
+    .default-popup-background {
+        background-color: var.$white;
+        background-size: cover;
+        background-position: center;
+    }
+    .swal2-success-circular-line-left {
+        background-color: transparent !important;
+    }
+
+    .swal2-success-fix {
+        background-color: transparent !important;
+    }
+
+    .swal2-success-circular-line-right {
+        background-color: transparent !important;
+    }
+}
+
+@mixin btn-states($color, $active-color, $focus-color, $disabled-color) {
+    background: $color;
+    transition: background 0.3s, box-shadow 0.3s;
+  
+    &:hover {
+      background: lighten($color, 10%);
+      transition: background 0.6s;
+      box-shadow: 0 0 0 4px $disabled-color;
+      color: var.$neutral-50;
+    }
+  
+    &:active {
+      background: lighten($active-color, 1%) !important;
+      color: var.$neutral-50 !important;
+    }
+  
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 4px $focus-color;
+      border: lighten($focus-color, 30%);
+    }
+  
+    &[disabled] {
+      background: $disabled-color;
+      cursor: not-allowed;
+    }
+}
+
+@mixin btn-outline-states($color, $active-color, $focus-color, $disabled-color) {
+    background: transparent;
+    border: 2px solid $color;
+    color: $color;
+    transition: background 0.3s, box-shadow 0.3s, color 0.3s;
+
+    &:hover {
+        background: lighten($color, 20%) !important;
+        color: darken($color, 10%) !important;
+        border: 2px solid lighten($color, 30%);
+        transition: background 0.3s;
+        box-shadow: 0 0 0 4px lighten($disabled-color, 30%);
+    }
+
+    &:active {
+        background: lighten($active-color, 20%) !important;
+        color: white !important;
+        border: 2px solid lighten($active-color, 20%) !important;
+    }
+
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 4px lighten($focus-color, 30%);
+        border: 2px solid lighten($focus-color, 30%);
+    }
+
+    &[disabled] {
+        background: transparent;
+        border-color: $disabled-color;
+        color: $disabled-color;
+        cursor: not-allowed;
+    }
+}
+
+@mixin btn-zero-states($color, $active-color, $focus-color, $disabled-color) {
+    background: transparent;
+    color: $color;
+    transition: background 0.3s, box-shadow 0.3s, color 0.3s;
+
+    &:hover {
+        background: lighten($color, 40%);
+        color: darken($color, 10%);
+    }
+
+    &:active {
+        background: lighten($color, 30%) !important;
+        color: darken($color, 10%) !important;
+        border: 1px solid lighten($active-color, 40%) !important;
+        box-shadow: 0 0 0 0 lighten($focus-color, 40%) !important;
+    }
+
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 4px lighten($focus-color, 30%);
+    }
+
+    &[disabled] {
+        background: transparent;
+        color: $disabled-color;
+        cursor: not-allowed;
+        border: none;
+    }
+}
+
+@mixin use-dark-mode() {
+    /* Choice style to dark mode */
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #212529;
+    color: var.$white;
+
+    @include dark-color-classes();
+    
+    .swal2-title {
+        color: white !important;
+    }
+
+    .swal2-html-container {
+        color: white !important;
+    }
+    
+    .default-popup-background {
+        background-color: var.$gray-700;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .swal2-success-circular-line-left {
+        background-color: transparent !important;
+    }
+
+    .swal2-success-fix {
+        background-color: transparent !important;
+    }
+
+    .swal2-success-circular-line-right {
+        background-color: transparent !important;
+    }
+}
+
+@mixin display-swal() {
+    margin: 0 !important; 
+    top: 0 !important;
+    left: 0 !important;
+    border-radius: 0 !important; 
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+
+@mixin breakpoint-swal-height($break-xs:5rem, $break-sm:10rem, $break-md:14rem, $break-lg:20rem, $break-xl:32rem, $option: false, $value: 0) {
+    @media (min-height: 320px) {
+        .swal2-icon {
+            margin-top: $break-xs;
+        }
+
+        .swal2-actions { 
+            @if($option == false) {
+                margin-bottom: $break-xs;
+            } @else {
+                margin-bottom: $value;
+            }
+        }
+    }
+
+    @media (min-height: 670px) {
+        .swal2-icon {
+            margin-top: $break-sm;
+        }
+
+        .swal2-actions { 
+            @if($option == false) {
+                margin-bottom: $break-sm;
+            } @else {
+                margin-bottom: $value;
+            }
+        }
+    }
+    @media (min-height: 813px) {
+        .swal2-icon {
+            margin-top: $break-md;
+        }
+
+        .swal2-actions { 
+            @if($option == false) {
+                margin-bottom: $break-md;
+            } @else {
+                margin-bottom: $value;
+            }
+        }
+    }
+
+    @media (min-height: 930px) {
+        .swal2-icon {
+            margin-top: $break-lg;
+        }
+
+        .swal2-actions { 
+            @if($option == false) {
+                margin-bottom: $break-lg;
+            } @else {
+                margin-bottom: $value;
+            }
+        }
+    }
+
+    @media (min-height: 1920px) {
+        .swal2-icon {
+            margin-top: $break-xl;
+        }
+
+        .swal2-actions { 
+            @if($option == false) {
+                margin-bottom: $break-xl;
+            } @else {
+                margin-bottom: $value;
+            }
+        }
+    }
+}
+
+@mixin breakpoint-swal-width($def-width) {
+
+    @media (min-width: 9976px) {
+        width: $def-width !important;
+        height: 35% !important;
+        max-width: 90% !important;
+        max-height: 100% !important;
+    }
+
+    @media (min-width: 1280px) {
+        width: $def-width !important;
+        height: 35% !important;
+        max-width: 90% !important;
+        max-height: 100% !important;
+    }
+}
+
+@mixin breakpoint-width($size, $xs, $small, $medium, $large, $xlarge, $xxlarge, $xxxlarge) {
+    width: $size !important;
+    
+    @media (min-width: var.$breakpoint-width-xs) {
+      width: $xs !important;
+    }
+    
+    @media (min-width: var.$breakpoint-width-sm) { 
+      width: $small !important;
+    }
+    
+    @media (min-width: var.$breakpoint-width-md) {
+      width: $medium !important;
+    }
+    
+    @media (min-width: var.$breakpoint-width-lg) {
+      width: $large !important;
+    }
+    
+    @media (min-width: var.$breakpoint-width-xl) {
+      width: $xlarge !important;
+    }
+    
+    @media (min-width: var.$breakpoint-width-xxl) {
+      width: $xxlarge !important;
+    }
+  
+    @media (min-width: var.$breakpoint-width-xxxl) {
+      width: $xxxlarge !important;
+    }
+}
+
+@mixin breakpoint-height($size, $xs, $small, $medium, $large, $xlarge, $xxlarge, $xxxlarge) {
+    height: $size !important;
+    
+    @media (min-height: var.$breakpoint-height-xs) {
+      height: $xs !important;
+    }
+    
+    @media (min-height: var.$breakpoint-height-sm) { 
+      height: $small !important;
+    }
+    
+    @media (min-height: var.$breakpoint-height-md) {
+      height: $medium !important;
+    }
+    
+    @media (min-height: var.$breakpoint-height-lg) {
+      height: $large !important;
+    }
+    
+    @media (min-height: var.$breakpoint-height-xl) {
+      height: $xlarge !important;
+    }
+    
+    @media (min-height: var.$breakpoint-height-xxl) {
+      height: $xxlarge !important;
+    }
+  
+    @media (min-height: var.$breakpoint-height-xxxl) {
+      height: $xxxlarge !important;
+    }
+}
