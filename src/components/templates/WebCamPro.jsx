@@ -62,8 +62,6 @@ const WebcamPro = (props) => {
   useEffect(() => {
     if(window.innerWidth < 776) {
       setDevice({ width: 480, height: 640 });
-      const video = webcamRef.current.video;
-      video.style.transform = 'scaleX(-1)';
     } else {
       setDevice({ width: 640, height: 480 });
     }
