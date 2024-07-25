@@ -79,7 +79,7 @@ const WebcamPro = (props) => {
       const video = webcamRef.current.video;
       if (video) {
         if (window.orientation === 45 || window.orientation === -45) {
-          video.style.transform = 'rotate(45deg)';
+          video.style.transform = 'scale(-1, 1) rotate(45deg)';
         } else {
           video.style.transform = 'rotate(45deg)';
         }
