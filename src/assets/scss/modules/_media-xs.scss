@@ -80,8 +80,9 @@
                 height: 100% !important;
                 object-fit: contain !important;
                 transform: scaleX(-1) !important;
-                transform: rotate(0deg) !important;
-                transform: scaleY(-1) !important;
+                transform: rotate(45deg) !important;
+                transform: scaleY(1) !important;
+                transform: scale(-1) !important;
 
               }
           }
