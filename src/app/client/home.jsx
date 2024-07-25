@@ -1,10 +1,11 @@
 import { Outlet } from "react-router-dom";
+import WebcamPro from "../../components/templates/WebCamPro";
 
 export default function HomePage() {
   return (
     <div>
-        Halo gaes
-        <Outlet />
+        <WebcamPro />
+        {/* <Outlet /> */}
     </div>
   )
 }
